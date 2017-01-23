@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>HTML5 Contact Form </title>
+  
+  
+  
+      <link rel="stylesheet" href="css/style.css">
+
+  
+</head>
+
+<body>
+  <html lang="en">
+<head>
+  <meta charset="utf-8">
+  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+</head>
+  
+ <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+<header class="ccheader">
+    <h1>AWS Support Pricing Calculator</h1>	
+</header>
+
+<div class="wrapper">
+    
+    <form action="########ENTER YOUR SERVER API GATEWAY URL#########" id="calcform" class="ccform">
+
+    <div class="ccfield-prepend">
+        <input class="ccformfield" type="text" name="MonthlyBill" placeholder="Monthly Bill" required>
+    </div>
+
+    <div class="ccfield-prepend">
+        <input class="ccbtn" type="submit" value="Submit">
+    </div>
+      
+     <div class="ccfield-prepend1"></div>
+
+      
+    </form>
+
+</div>
+
+<div class="credit">
+<p>Enter your monthly AWS Bill and this applcation will give back your monthly support spend for each level present currently. Kindly refer to the <a href="https://aws.amazon.com/premiumsupport/pricing/" target="_blank">AWS Support Pricing page</a> for reference.</p>
+
+</div>
+
+<script>
+//$("#result").empty();
+// Attach a submit handler to the form
+$( "#calcform" ).submit(function( event ) {
+ 
+  // Stop form from submitting normally
+  event.preventDefault();
+
+  // Get some values from elements on the page:
+  var $form = $( this ),
+    term = $form.find( "input[name=MonthlyBill]" ).val(),
+    url = $form.attr("action");
+   
+  $(function(){
+    $(".ccfield-prepend1").empty();
+  });
+
+  // Send the data using post
+	var posting = $.post( url, JSON.stringify({ "MonthlyBill": term }) );
+  
+  // Put the results in a div
+  posting.done(function( apiresponse ) {
+    $.each(apiresponse, function () {
+      $.each(this, function (name, value) {
+        //console.log(name + '=' + value);
+        $( ".ccfield-prepend1" ).append(name+value+"<br/>");
+      });
+    });
+ 	});
+});
+
+</script>
+  
+  
+</body>
+</html>
