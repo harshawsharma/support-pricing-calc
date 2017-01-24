@@ -55,7 +55,7 @@ def lambda_handler(event, context):
         enterprise_plan_cost = {'Business Support Cost is $': round((15000 + (0.07 * (bill - 150000))),2)}
     elif 500000 <= bill < 1000000:
         enterprise_plan_cost = {'Enterprise Support Cost is $': round((15000 + 24500 + (0.05 * (bill - 500000))),2)}
-    elif bill > 1000000:
+    elif bill >= 1000000:
         enterprise_plan_cost = {'Enterprise Support Cost is $': round((15000 + 24500 + 25000 + (0.03 * (bill - 1000000))),2)}
 
     #return json.dumps(basic_plan_cost),json.dumps(dev_plan_cost),json.dumps(business_plan_cost),json.dumps(enterprise_plan_cost)
