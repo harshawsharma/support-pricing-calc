@@ -13,7 +13,7 @@ def lambda_handler(event, context):
 
 ### DEV SUPPORT PLAN ###
     devbase = float(29.00)
-    if (.03 * bill) > 29:
+    if (.03 * bill) >= 29:
         dev_plan_cost = {'Developer Support Cost is $': round((.03 * bill),2)}
     else:
         dev_plan_cost = {'Developer Support Cost is $':(devbase)}
@@ -35,7 +35,7 @@ def lambda_handler(event, context):
         business_plan_cost = {'Business Support Cost is $': round((1000 + (0.07 * (bill - 10000))),2)}
     elif 80000 <= bill < 250000:
         business_plan_cost = {'Business Support Cost is $': round((1000 + 4900 + (0.05 * (bill - 80000))),2)}
-    elif bill > 250000:
+    elif bill >= 250000:
         business_plan_cost = {'Business Support Cost is $': round((1000 + 4900 + 5100 + (0.03 * (bill - 250000))),2)}
 
 
